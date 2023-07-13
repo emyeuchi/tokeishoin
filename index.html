@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>画像重ね表示</title>
+  <style>
+    /* チェックバーのスタイル */
+    .checkbox-bar {
+      margin-bottom: 10px;
+    }
+
+    input[type=checkbox]{
+      display: none;
+    }
+
+    .checkbox-bar label {
+      margin-right: 40px;
+    }
+
+    /* 画像のスタイル */
+    .overlay-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: none; /* 画像を初めから非表示にする */
+    }
+    * {
+      font-size: 20px;
+}
+  </style>
+</head>
+<body>
+  <!-- チェックバー -->
+  <div class="checkbox-bar">
+    <label for="chikei">地形</label>
+    <input type="checkbox" id="chikei" onchange="updateOverlay('chikei')">
+    <label for="kotsu">交通</label>
+    <input type="checkbox" id="kotsu" onchange="updateOverlay('kotsu')">
+    <label for="toshi">都市</label>
+    <input type="checkbox" id="toshi" onchange="updateOverlay('toshi')">
+    <label for="gunken">郡県</label>
+    <input type="checkbox" id="gunken" onchange="updateOverlay('gunken')">
+    <label for="ritsuryo">律令国</label>
+    <input type="checkbox" id="ritsuryo" onchange="updateOverlay('ritsuryo')">
+  </div>
+
+  <!-- 画像表示領域 -->
+  <div id="image-container" style="position: relative;">
+    <img src="bg.png" alt="Background" width="1200px">
+
+    <!-- 重ねる画像 -->
+    <img id="chikei-image" class="overlay-image" src="chikei.png" alt="地形" width="1200px">
+    <img id="kotsu-image" class="overlay-image" src="kotsu.png" alt="交通" width="1200px">
+    <img id="toshi-image" class="overlay-image" src="toshi.png" alt="都市" width="1200px">
+    <img id="gunken-image" class="overlay-image" src="gunken.png" alt="郡県" width="1200px">
+    <img id="ritsuryo-image" class="overlay-image" src="ritsuryo.png" alt="律令国" width="1200px">
+  </div>
+
+  <script>
+    function updateOverlay(imageId) {
+      var checkbox = document.getElementById(imageId);
+      var image = document.getElementById(imageId + '-image');
+
+      if (checkbox.checked) {
+        image.style.display = 'block';
+      } else {
+        image.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>
